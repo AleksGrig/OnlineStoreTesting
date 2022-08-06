@@ -34,20 +34,18 @@ import com.automationstoretest.utility.ExtentManager;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class Base {
+  public static final String userDir = System.getProperty("user.dir");
   protected static Properties properties = new Properties();
   protected static Logger logger;
   private static ThreadLocal<RemoteWebDriver> driver = new ThreadLocal<>();
 
   static {
     try {
-      String path = """
-        %s\\configuration\\config.properties""".formatted(System.getProperty("user.dir"));
-      properties.load(new FileInputStream(path));
-    } catch(FileNotFoundException e) {
-      e.printStackTrace();
-    } catch (IOException e) {
-      e.printStackTrace();
-    } 
+      String configPath = """
+        %s/configuration/config.properties""".formatted(userDir);
+      properties.load(new FileInputStream(configPath));
+    } catch(FileNotFoundException e) { e.printStackTrace(); }
+      catch(IOException e) { e.printStackTrace(); } 
 
     System.setProperty("log4j.configurationFile", "configuration\\log4j2.xml");
     logger = LogManager.getLogger();
@@ -58,7 +56,7 @@ public class Base {
   }
   
   @BeforeSuite(groups = {"Smoke", "Sanity", "Regression"})
-  public void beforeSuite() {
+  public void beforeSuite() throws IOException {
     ExtentManager.setExtent("Samsung-laptop", "OnlineStoreTest", "Wi9htWalker");
   }
   
@@ -79,27 +77,25 @@ public class Base {
   }
 
   public static void fluentWait(WebDriver driver,WebElement element, int timeOut) {
-    try {
-      Wait<WebDriver> wait = new FluentWait<WebDriver>((WebDriver) driver)
-        .withTimeout(Duration.ofSeconds(20))
-        .pollingEvery(Duration.ofSeconds(2))
-        .ignoring(Exception.class);
-      wait.until(ExpectedConditions.visibilityOf(element));
-      element.click();
-    } catch(Exception e) {}
+     Wait<WebDriver> wait = new FluentWait<WebDriver>((WebDriver) driver)
+      .withTimeout(Duration.ofSeconds(20))
+      .pollingEvery(Duration.ofSeconds(2))
+      .ignoring(Exception.class);
+    wait.until(ExpectedConditions.visibilityOf(element));
+    element.click();
   }
 
   public static String screenshot(WebDriver driver, String filename) {
 		String date = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
 		TakesScreenshot screenshot = (TakesScreenshot) driver;
 		File source = screenshot.getScreenshotAs(OutputType.FILE);
-		String destination = System.getProperty("user.dir") + "\\screenshots\\" + filename + "_" + date + ".png";
+		String destination = """
+      %s/screenshots/%s_%s.png""".formatted(userDir, filename, date);
 
 		try {
 			FileUtils.copyFile(source, new File(destination));
-		} catch (Exception e) {
-			e.getMessage();
-		}
+		} catch(Exception e) { e.getMessage(); }
+
 		return destination;
 	}
   
