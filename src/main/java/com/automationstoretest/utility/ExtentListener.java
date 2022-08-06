@@ -1,7 +1,5 @@
 package com.automationstoretest.utility;
 
-import java.io.IOException;
-
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
@@ -27,18 +25,12 @@ public class ExtentListener extends ExtentManager implements ITestListener {
 
 	public void onTestFailure(ITestResult result) {
 		if (result.getStatus() == ITestResult.FAILURE) {
-			try {
-				test.get().log(Status.FAIL,
-						MarkupHelper.createLabel(result.getName() + " - Test Case Failed", ExtentColor.RED));
-				test.get().log(Status.FAIL,
-						MarkupHelper.createLabel(result.getThrowable() + " - Test Case Failed", ExtentColor.RED));
-				String imgPath = Base.screenshot(Base.getDriver(), result.getName());
-			
-				test.get().fail("ScreenShot is Attached", MediaEntityBuilder.createScreenCaptureFromPath(imgPath).build());
-				
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			test.get().log(Status.FAIL,
+					MarkupHelper.createLabel(result.getName() + " - Test Case Failed", ExtentColor.RED));
+			test.get().log(Status.FAIL,
+					MarkupHelper.createLabel(result.getThrowable() + " - Test Case Failed", ExtentColor.RED));
+			String imgPath = Base.screenshot(Base.getDriver(), result.getName());
+			test.get().fail("ScreenShot is Attached", MediaEntityBuilder.createScreenCaptureFromPath(imgPath).build());
 		}
 	}
 
