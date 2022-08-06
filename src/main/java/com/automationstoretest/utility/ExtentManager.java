@@ -5,8 +5,8 @@ import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 
 public class ExtentManager {
 	
-	private static ExtentHtmlReporter htmlReporter;
 	protected static ExtentReports extent;
+	private static ExtentHtmlReporter htmlReporter;
 	
 	public static void setExtent(String hostName, String projectName, String tester) {
 		htmlReporter= new ExtentHtmlReporter(System.getProperty("user.dir") + "/test-output/extent-report/"+"test-output.html");
