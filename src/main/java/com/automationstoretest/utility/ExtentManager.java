@@ -18,9 +18,7 @@ public class ExtentManager {
 
     String extentConfigPath = """
       %s/configuration/extent.xml""".formatted(Base.userDir);
-		// try {
-      sparkReporter.loadXMLConfig(extentConfigPath);
-    //} catch (IOException e) { e.printStackTrace(); }
+    sparkReporter.loadXMLConfig(extentConfigPath);
 
 		extent = new ExtentReports();
 		extent.attachReporter(sparkReporter);
@@ -30,6 +28,7 @@ public class ExtentManager {
 		extent.setSystemInfo("Tester", "Wi9htWalker");
 		extent.setSystemInfo("OS", System.getProperty("os.name"));
 	}
+  
 	public static void endReport() {
 		extent.flush();
 	}
