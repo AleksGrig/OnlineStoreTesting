@@ -3,7 +3,7 @@
   <configuration>
     <!-- report theme -->
     <!-- standard, dark -->
-    <theme>standard</theme>
+    <theme>dark</theme>
 
     <!-- document encoding -->
     <!-- defaults to UTF-8 -->
@@ -19,9 +19,7 @@
     <!-- report name - displayed at top-nav -->
     <reportName>
       MyStoreProject Report
-      <![CDATA[
-                <img src='resources\logo.png'/>
-            ]]>
+      <![CDATA[ <img src=''/> ]]>
     </reportName>
 
 
