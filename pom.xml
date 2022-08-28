@@ -98,7 +98,12 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>3.0.0-M7</version>
         <configuration>
-          <suiteXmlFiles>testng_crossbrowser.xml</suiteXmlFiles>
+          <suiteXmlFiles>
+            <suiteXmlFile>testng_chrome.xml</suiteXmlFile>
+          </suiteXmlFiles>
+          <systemPropertyVariables>
+            <appURL>${url}</appURL>
+          </systemPropertyVariables>
         </configuration>
       </plugin>
 
