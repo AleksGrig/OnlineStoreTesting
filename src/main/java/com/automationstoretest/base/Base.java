@@ -89,10 +89,12 @@ public class Base {
 		String date = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
 		TakesScreenshot screenshot = (TakesScreenshot) driver;
 		File source = screenshot.getScreenshotAs(OutputType.FILE);
-		String destination = properties.getProperty("launch").equals("maven") ? """
-      %s/screenshots/%s_%s.png""".formatted(userDir, filename, date) : """
+    boolean jenkins = System.getProperty("launch") == null ? false : 
+        System.getProperty("launch").equals("jenkins") ? true : false;
+		String destination = jenkins ? """
       http://localhost:8080/job/OnlineStoreTesting/ws/screenshots/%s_%s.png
-      """.formatted(filename, date);
+      """.formatted(filename, date) : """
+      %s/screenshots/%s_%s.png""".formatted(userDir, filename, date);
 
 		try {
 			FileUtils.copyFile(source, new File(destination));

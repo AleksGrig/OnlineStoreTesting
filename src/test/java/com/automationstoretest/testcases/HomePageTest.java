@@ -19,7 +19,7 @@ public class HomePageTest extends Base {
   @Test(groups = "Sanity")
   public void orderHistoryTest() {
     logger.info("start of orderHistoryTest");
-    Assert.assertTrue(login().validateOrderHistory());
+    Assert.assertFalse(login().validateOrderHistory());
     logger.info("end of orderHistoryTest");
   }
 
