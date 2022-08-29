@@ -92,7 +92,7 @@ public class Base {
     boolean jenkins = System.getProperty("launch") == null ? false : 
         System.getProperty("launch").equals("jenkins") ? true : false;
 		String destination = jenkins ? """
-      http://localhost:8080/job/OnlineStoreTesting/ws/OnlineStoreTesting/screenshots/%s_%s.png
+      http://localhost:8080/job/OnlineStoreTesting/ws/screenshots/%s_%s.png
       """.formatted(filename, date) : """
       %s/screenshots/%s_%s.png""".formatted(userDir, filename, date);
 
