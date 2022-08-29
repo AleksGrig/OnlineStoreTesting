@@ -1,6 +1,6 @@
 logs/*
 test-output/extent-report/*
-screenshots/*
+screenshots/*.png
 
 # Created by https://www.toptal.com/developers/gitignore/api/windows,visualstudiocode,java,maven
 # Edit at https://www.toptal.com/developers/gitignore?templates=windows,visualstudiocode,java,maven
