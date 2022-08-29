@@ -35,9 +35,9 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class Base {
   public static final String userDir = System.getProperty("user.dir");
-  protected static Properties properties = new Properties();
+  protected static final Properties properties = new Properties();
   protected static Logger logger;
-  private static ThreadLocal<RemoteWebDriver> driver = new ThreadLocal<>();
+  private static final ThreadLocal<RemoteWebDriver> driver = new ThreadLocal<>();
 
   static {
     try {
@@ -89,8 +89,10 @@ public class Base {
 		String date = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
 		TakesScreenshot screenshot = (TakesScreenshot) driver;
 		File source = screenshot.getScreenshotAs(OutputType.FILE);
-		String destination = """
-      %s/screenshots/%s_%s.png""".formatted(userDir, filename, date);
+		String destination = properties.getProperty("launch").equals("maven") ? """
+      %s/screenshots/%s_%s.png""".formatted(userDir, filename, date) : """
+      http://localhost:8080/job/OnlineStoreTesting/ws/screenshots/%s_%s.png
+      """.formatted(filename, date);
 
 		try {
 			FileUtils.copyFile(source, new File(destination));
