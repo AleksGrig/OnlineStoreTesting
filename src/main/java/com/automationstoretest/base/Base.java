@@ -89,16 +89,15 @@ public class Base {
 		String date = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
 		TakesScreenshot screenshot = (TakesScreenshot) driver;
 		File source = screenshot.getScreenshotAs(OutputType.FILE);
-    // logger.info(() -> "launch: " + System.getProperty("launch")); // Testing jenkins parameter
-    // boolean jenkins = System.getProperty("launch") == null ? false : 
-    //     System.getProperty("launch").equals("jenkins") ? true : false;
-		// logger.info(() -> "jenkins: " + jenkins);
-    // String destination = jenkins ? """
-    //     C:/Users/Alex/.jenkins/workspace/OnlineStoreTesting/screenshots/%s_%s.png
-    //     """.formatted(filename, date) : """
-    //     %s/screenshots/%s_%s.png""".formatted(userDir, filename, date);
-    // logger.info(() -> "destination: " + destination);
-    String destination = "http://localhost:8080/job/OnlineStoreTesting/ws/screenshots/" + filename + "_" + date + ".png";
+    logger.info(() -> "launch: " + System.getProperty("launch")); // Testing jenkins parameter
+    boolean jenkins = System.getProperty("launch") == null ? false : 
+        System.getProperty("launch").equals("jenkins") ? true : false;
+		logger.info(() -> "jenkins: " + jenkins);
+    String destination = jenkins ? """
+        http://localhost:8080/job/OnlineStoreTesting/ws/screenshots/%s_%s.png
+        """.formatted(filename, date) : """
+        %s/screenshots/%s_%s.png""".formatted(userDir, filename, date);
+    logger.info(() -> "destination: " + destination);
 
 		try {
 			FileUtils.copyFile(source, new File(destination));
