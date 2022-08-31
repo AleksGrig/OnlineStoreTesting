@@ -93,10 +93,10 @@ public class Base {
     boolean jenkins = System.getProperty("launch") == null ? false : 
         System.getProperty("launch").equals("jenkins") ? true : false;
 		logger.info(() -> "jenkins: " + jenkins);
-        String destination = jenkins ? """
-      http://localhost:7777/job/OnlineStoreTesting/ws/screenshots/%s_%s.png
-      """.formatted(filename, date) : """
-      %s/screenshots/%s_%s.png""".formatted(userDir, filename, date);
+    String destination = jenkins ? """
+        http://localhost:7777/job/OnlineStoreTesting/workspace/screenshots/%s_%s.png
+        """.formatted(filename, date) : """
+        %s/screenshots/%s_%s.png""".formatted(userDir, filename, date);
     logger.info(() -> "destination: " + destination);
 
 		try {
