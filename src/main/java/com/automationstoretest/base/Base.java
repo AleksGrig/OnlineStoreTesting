@@ -94,7 +94,7 @@ public class Base {
         System.getProperty("launch").equals("jenkins") ? true : false;
 		logger.info(() -> "jenkins: " + jenkins);
     String destination = jenkins ? """
-        http://localhost:8080/job/OnlineStoreTesting/ws/screenshots/%s_%s.png
+        http://localhost:7777/job/OnlineStoreTesting/workspace/screenshots/%s_%s.png
         """.formatted(filename, date) : """
         %s/screenshots/%s_%s.png""".formatted(userDir, filename, date);
     logger.info(() -> "destination: " + destination);
