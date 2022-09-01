@@ -25,4 +25,8 @@ public class HomePage extends Base {
   public String getCurrentURL() {
     return getDriver().getCurrentUrl();
   }
+
+  public boolean validateHomePage(String currentURL) {
+    return currentURL.equals("http://automationpractice.com/index.php?controller=my-account");
+  }
 }

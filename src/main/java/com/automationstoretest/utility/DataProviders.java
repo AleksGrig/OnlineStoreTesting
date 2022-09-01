@@ -1,5 +1,8 @@
 package com.automationstoretest.utility;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.testng.annotations.DataProvider;
 
 public class DataProviders {
@@ -63,6 +66,23 @@ public class DataProviders {
 			for (int j = 0; j < totalColumns; j++) {
 				data[i][j] = excelLibrary.getCellData("SearchProduct", j, i + 2);
 			}
+		}
+		return data;
+	}
+
+  @DataProvider(name = "userdata")
+	public Object[][] accountCreation() {
+		int totalRows = excelLibrary.getRowCount("AccountCreationData") - 1;
+		int totalColumns = excelLibrary.getColumnCount("AccountCreationData");
+		Object[][] data = new Object[totalRows][1];
+		
+		for (int i = 0; i < totalRows; i++) {
+			Map<String, String> hashMap = new HashMap<>();
+			for (int j = 0; j < totalColumns; j++) {
+				hashMap.put(excelLibrary.getCellData("AccountCreationData", j, 1),
+						excelLibrary.getCellData("AccountCreationData", j, i + 2));
+			}
+			data[i][0]=hashMap;
 		}
 		return data;
 	}

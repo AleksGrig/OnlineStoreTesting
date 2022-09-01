@@ -22,6 +22,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
@@ -105,6 +106,23 @@ public class Base {
 
 		return destination;
 	}
+
+  public void selectByValue(WebElement element, String value) {
+    Select select = new Select(element);
+    select.selectByValue(value);
+  }
+
+  public void selectByVisibleText(WebElement element, String text) {
+    Select select = new Select(element);
+    select.selectByVisibleText(text);
+  }
+
+  public String getRandomEmail(String email) {
+    int random = (int) (Math.random() * 1000000000);
+    String[] emailSplit = email.split("@");
+    email = emailSplit[0] + random + "@" + emailSplit[1];
+    return email;
+  }
   
   private void launchApp(String browser) {
     switch (browser.toLowerCase()) {

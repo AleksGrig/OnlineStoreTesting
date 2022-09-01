@@ -1,5 +1,7 @@
 package com.automationstoretest.testcases;
 
+import java.util.HashMap;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -12,11 +14,23 @@ public class AccountCreationPageTest extends Base {
   @Test(dataProvider = "email", dataProviderClass = DataProviders.class,
         groups = "Sanity")
   public void createAccountTest(String email) {
-    logger.info("start of createAccountTest");
+    logger.info(() -> "start of createAccountTest");
     Assert.assertTrue(new IndexPage()
       .clickOnSignIn()
       .createAccount(email)
       .validateAccountCreatePage());
-    logger.info("end of createAccountTest");
+    logger.info(() -> "end of createAccountTest");
+  }
+
+  @Test(dataProvider = "userdata", dataProviderClass = DataProviders.class,
+        groups = "Smoke")
+  public void createAccountWithPersonalData(HashMap<String, String> personalData) {
+    logger.info(() -> "start of createAccountWithPersonalData");
+    Assert.assertTrue(new IndexPage()
+      .clickOnSignIn()
+      .createAccount(getRandomEmail(personalData.get("Email")))
+      .createAccount(personalData)
+      .validateHomePage(getDriver().getCurrentUrl()));
+    logger.info(() -> "end of createAccountWithPersonalData");
   }
 }
