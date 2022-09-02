@@ -8,7 +8,7 @@ import com.automationstoretest.pageobjects.IndexPage;
 
 public class IndexPageTest extends Base {
   
-  @Test(groups = "Smoke")
+  @Test(groups = "Sanity")
   public void verifyLogo() {
     logger.info("start of logoTest");
     Assert.assertTrue(new IndexPage().validateLogo());

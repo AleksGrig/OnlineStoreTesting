@@ -10,7 +10,7 @@ import com.automationstoretest.utility.DataProviders;
 public class LoginPageTest extends Base {
 
   @Test(dataProvider = "credentials", dataProviderClass = DataProviders.class,
-        groups = "Sanity")
+        groups = "Smoke")
   public void loginTest(String username, String password) {
     logger.info("start of loginTest");
     String expectedURL = "http://automationpractice.com/index.php?controller=my-account";

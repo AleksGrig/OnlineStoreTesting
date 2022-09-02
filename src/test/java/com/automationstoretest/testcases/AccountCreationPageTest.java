@@ -23,14 +23,15 @@ public class AccountCreationPageTest extends Base {
   }
 
   @Test(dataProvider = "userdata", dataProviderClass = DataProviders.class,
-        groups = "Smoke")
+        groups = "Regression")
   public void createAccountWithPersonalData(HashMap<String, String> personalData) {
     logger.info(() -> "start of createAccountWithPersonalData");
-    Assert.assertTrue(new IndexPage()
+    String expectedURL = "http://automationpractice.com/index.php?controller=my-account";
+    Assert.assertEquals(new IndexPage()
       .clickOnSignIn()
       .createAccount(getRandomEmail(personalData.get("Email")))
       .createAccount(personalData)
-      .validateHomePage(getDriver().getCurrentUrl()));
+      .getCurrentURL(), expectedURL);
     logger.info(() -> "end of createAccountWithPersonalData");
   }
 }
