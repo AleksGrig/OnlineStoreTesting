@@ -79,7 +79,7 @@ public class Base {
   }
 
   public static void fluentWait(WebDriver driver, int timeOut, ExpectedCondition<WebElement> condition) {
-     Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+    Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
       .withTimeout(Duration.ofSeconds(20))
       .pollingEvery(Duration.ofSeconds(2))
       .ignoring(Exception.class);
