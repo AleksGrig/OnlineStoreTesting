@@ -20,6 +20,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
@@ -77,13 +78,12 @@ public class Base {
     driver.get().quit();
   }
 
-  public static void fluentWait(WebDriver driver,WebElement element, int timeOut) {
-     Wait<WebDriver> wait = new FluentWait<WebDriver>((WebDriver) driver)
+  public static void fluentWait(WebDriver driver, int timeOut, ExpectedCondition<WebElement> condition) {
+     Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
       .withTimeout(Duration.ofSeconds(20))
       .pollingEvery(Duration.ofSeconds(2))
       .ignoring(Exception.class);
-    wait.until(ExpectedConditions.visibilityOf(element));
-    element.click();
+    wait.until(condition);
   }
 
   public static String screenshot(WebDriver driver, String filename) {
