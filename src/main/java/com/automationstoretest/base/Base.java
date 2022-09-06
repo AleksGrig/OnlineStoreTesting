@@ -23,7 +23,6 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.Wait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
@@ -78,11 +77,11 @@ public class Base {
   }
 
   public static void fluentWait(WebDriver driver, int timeOut, ExpectedCondition<WebElement> condition) {
-    Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+    new FluentWait<WebDriver>(driver)
       .withTimeout(Duration.ofSeconds(20))
       .pollingEvery(Duration.ofSeconds(2))
-      .ignoring(Exception.class);
-    wait.until(condition);
+      .ignoring(Exception.class)
+      .until(condition);
   }
 
   public static String screenshot(WebDriver driver, String filename) {
