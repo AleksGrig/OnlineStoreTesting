@@ -4,9 +4,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import com.automationstoretest.base.Base;
+import com.automationstoretest.base.Action;
 
-public class OrderConfirmationPage extends Base {
+public class OrderConfirmationPage extends Action {
   @FindBy(css = ".cheque-indent > strong.dark") WebElement orderCompletionMessage;
 
   public OrderConfirmationPage() {

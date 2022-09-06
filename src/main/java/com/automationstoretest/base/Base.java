@@ -1,28 +1,18 @@
 package com.automationstoretest.base;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.time.Duration;
-import java.util.Date;
 import java.util.Properties;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
@@ -76,52 +66,6 @@ public class Base {
     driver.get().quit();
   }
 
-  public static void fluentWait(WebDriver driver, int timeOut, ExpectedCondition<WebElement> condition) {
-    new FluentWait<WebDriver>(driver)
-      .withTimeout(Duration.ofSeconds(20))
-      .pollingEvery(Duration.ofSeconds(2))
-      .ignoring(Exception.class)
-      .until(condition);
-  }
-
-  public static String screenshot(WebDriver driver, String filename) {
-		String date = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
-		TakesScreenshot screenshot = (TakesScreenshot) driver;
-		File source = screenshot.getScreenshotAs(OutputType.FILE);
-    logger.info(() -> "launch: " + System.getProperty("launch")); // Testing jenkins parameter
-    boolean jenkins = System.getProperty("launch") == null ? false : 
-        System.getProperty("launch").equals("jenkins") ? true : false;
-		logger.info(() -> "jenkins: " + jenkins);
-    String destination = jenkins ? """
-        http://localhost:8080/job/OnlineStoreTesting/ws/screenshots/%s_%s.png
-        """.formatted(filename, date) : """
-        %s/screenshots/%s_%s.png""".formatted(userDir, filename, date);
-    logger.info(() -> "destination: " + destination);
-
-		try {
-			FileUtils.copyFile(source, new File(destination));
-		} catch(Exception e) { e.getMessage(); }
-
-		return destination;
-	}
-
-  public void selectByValue(WebElement element, String value) {
-    Select select = new Select(element);
-    select.selectByValue(value);
-  }
-
-  public void selectByVisibleText(WebElement element, String text) {
-    Select select = new Select(element);
-    select.selectByVisibleText(text);
-  }
-
-  public String getRandomEmail(String email) {
-    int random = (int) (Math.random() * 1000000000);
-    String[] emailSplit = email.split("@");
-    email = emailSplit[0] + random + "@" + emailSplit[1];
-    return email;
-  }
-  
   private void launchApp(String browser) {
     switch (browser.toLowerCase()) {
       case "firefox": 

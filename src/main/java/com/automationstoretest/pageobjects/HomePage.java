@@ -4,9 +4,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import com.automationstoretest.base.Base;
+import com.automationstoretest.base.Action;
 
-public class HomePage extends Base {
+public class HomePage extends Action {
   @FindBy(css = "a[title='My wishlists'] > span") WebElement myWishlists;
   @FindBy(css = "a[title='Orders'] > span") WebElement myOrderHistory;
 

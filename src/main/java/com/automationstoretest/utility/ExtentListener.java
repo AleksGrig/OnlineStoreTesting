@@ -3,6 +3,7 @@ package com.automationstoretest.utility;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
+import com.automationstoretest.base.Action;
 import com.automationstoretest.base.Base;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
@@ -26,7 +27,7 @@ public class ExtentListener extends ExtentManager implements ITestListener {
 				MarkupHelper.createLabel(result.getName() + " - Test Case Failed", ExtentColor.RED));
 		test.get().log(Status.FAIL,
 				MarkupHelper.createLabel(result.getThrowable() + " - Test Case Failed", ExtentColor.RED));
-		String imgPath = Base.screenshot(Base.getDriver(), result.getName());
+		String imgPath = Action.screenshot(Base.getDriver(), result.getName());
 		test.get().fail("ScreenShot is Attached", MediaEntityBuilder.createScreenCaptureFromPath(imgPath).build());
 	}
 

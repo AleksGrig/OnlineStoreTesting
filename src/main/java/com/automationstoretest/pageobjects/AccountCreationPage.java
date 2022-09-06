@@ -6,9 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import com.automationstoretest.base.Base;
+import com.automationstoretest.base.Action;
 
-public class AccountCreationPage extends Base{
+public class AccountCreationPage extends Action {
   @FindBy(css = "h1.page-heading") WebElement formTitle;
   @FindBy(id = "id_gender1") WebElement titleMr;
   @FindBy(id = "id_gender2") WebElement titleMrs;

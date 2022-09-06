@@ -4,9 +4,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import com.automationstoretest.base.Base;
+import com.automationstoretest.base.Action;
 
-public class ShippingPage extends Base {
+public class ShippingPage extends Action {
   @FindBy(css = "button[name='processCarrier']") WebElement procedeToCheckoutBtn;
   @FindBy(css = "#cgv") WebElement termsOfServiceCheckbox;
 

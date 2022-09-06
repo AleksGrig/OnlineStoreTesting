@@ -4,9 +4,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import com.automationstoretest.base.Base;
+import com.automationstoretest.base.Action;
 
-public class OrderPage extends Base {
+public class OrderPage extends Action {
   @FindBy(css = ".price>.price") WebElement unitPrice;
   @FindBy(css = "#total_price") WebElement totalPrice;
   @FindBy(css = "a.standard-checkout>span") WebElement procedeToChekoutBtn;

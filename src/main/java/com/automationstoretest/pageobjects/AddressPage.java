@@ -4,9 +4,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import com.automationstoretest.base.Base;
+import com.automationstoretest.base.Action;
 
-public class AddressPage extends Base {
+public class AddressPage extends Action {
   @FindBy(css = "button[name='processAddress']") WebElement procedeToCheckoutBtn;
 
   public AddressPage() {

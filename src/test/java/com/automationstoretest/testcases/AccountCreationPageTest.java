@@ -5,6 +5,7 @@ import java.util.HashMap;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import com.automationstoretest.base.Action;
 import com.automationstoretest.base.Base;
 import com.automationstoretest.pageobjects.IndexPage;
 import com.automationstoretest.utility.DataProviders;
@@ -29,7 +30,7 @@ public class AccountCreationPageTest extends Base {
     String expectedURL = "http://automationpractice.com/index.php?controller=my-account";
     Assert.assertEquals(new IndexPage()
       .clickOnSignIn()
-      .createAccount(getRandomEmail(personalData.get("Email")))
+      .createAccount(Action.getRandomEmail(personalData.get("Email")))
       .createAccount(personalData)
       .getCurrentURL(), expectedURL);
     logger.info(() -> "end of createAccountWithPersonalData");

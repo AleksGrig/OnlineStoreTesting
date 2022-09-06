@@ -4,9 +4,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import com.automationstoretest.base.Base;
+import com.automationstoretest.base.Action;
 
-public class OrderSummaryPage extends Base {
+public class OrderSummaryPage extends Action {
   @FindBy(css = "#cart_navigation > button") WebElement iConfirmMyOrderBtn;
 
   public OrderSummaryPage() {

@@ -7,9 +7,9 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
-import com.automationstoretest.base.Base;
+import com.automationstoretest.base.Action;
 
-public class AddToCartPage extends Base {
+public class AddToCartPage extends Action {
   @FindBy(css = "#quantity_wanted") WebElement quantityField;
   @FindBy(css = "#group_1") WebElement sizeField;
   @FindBy(css = "button[name='Submit'] > span") WebElement addToCartBtn;

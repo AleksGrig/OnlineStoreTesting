@@ -4,9 +4,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import com.automationstoretest.base.Base;
+import com.automationstoretest.base.Action;
 
-public class LoginPage extends Base {
+public class LoginPage extends Action {
   @FindBy(id = "email") WebElement userName;
   @FindBy(id = "passwd") WebElement userPassword;
   @FindBy(id = "SubmitLogin") WebElement submitLoginnBtn;

@@ -4,9 +4,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import com.automationstoretest.base.Base;
+import com.automationstoretest.base.Action;
 
-public class PaymentPage extends Base {
+public class PaymentPage extends Action {
   @FindBy(css = "a[title='Pay by bank wire']") WebElement payByBankWireLink;
   @FindBy(css = "a[title='Pay by check.']") WebElement payByCheckLink;
 
